@@ -82,8 +82,6 @@ export const AuthProvider = ({ children }: any) => {
     }
   };
 
-  console.log("authstate", authState);
-
   const logout = async () => {
     await SecureStore.deleteItemAsync(TOKEN_KEY);
 
