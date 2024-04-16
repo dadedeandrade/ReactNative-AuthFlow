@@ -4,14 +4,18 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Home from "./app/screens/Home";
 import Login from "./app/screens/Login";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const Stack = createNativeStackNavigator();
+const queryClient = new QueryClient();
 
 export default function App() {
   return (
-    <AuthProvider>
-      <Layout></Layout>
-    </AuthProvider>
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <Layout></Layout>
+      </AuthProvider>
+    </QueryClientProvider>
   );
 }
 
@@ -26,7 +30,7 @@ export const Layout = () => {
             name="Home"
             component={Home}
             options={{
-              headerRight: () => <Button onPress={onLogout} title="Sign Out" />,
+              headerRight: () => <Button onPress={onLogout} title="Sair" />,
             }}
           ></Stack.Screen>
         ) : (
