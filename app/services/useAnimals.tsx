@@ -9,12 +9,6 @@ export interface Animal {
   img: string;
   name: string;
 }
-export interface AnimalDetails extends Animal {
-  description?: string;
-  phone?: string;
-  email?: string;
-}
-
 const useAnimals = () => {
   const getAnimals = () => {
     const result = axios.get<Animal[]>(API_URL + "/animals/");

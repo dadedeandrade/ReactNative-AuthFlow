@@ -10,23 +10,27 @@ const Home = () => {
   const { categories, isCategoriesError, isCategoriesLoading } =
     useCategories();
   const { animals, isAnimalsError } = useAnimals();
+
   const [selectedCategoryId, setSelectedCategoryId] = useState(null);
 
-  if (isCategoriesLoading || isAnimalsError) {
-    <View>
-      <Text>Carregando...</Text>
-    </View>;
+  if (isCategoriesLoading || isAnimalsError || !animals) {
+    return (
+      <View>
+        <Text>Carregando...</Text>
+      </View>
+    );
   }
 
-  if (isCategoriesError || isAnimalsError || !categories || !animals) {
+  if (isCategoriesError || isAnimalsError || !categories) {
     return (
       <View>
         <Text>Algo deu errado :( tente sair e entrar novamente no app</Text>
       </View>
     );
   }
+
   const filteredAnimals =
-    selectedCategoryId === "null"
+    selectedCategoryId === "null" || selectedCategoryId === null
       ? animals
       : animals.filter((animal) => animal.categoryId === selectedCategoryId);
 
@@ -57,7 +61,9 @@ const Home = () => {
             {filteredAnimals.map((el) => {
               return <Card key={el.id} animal={el} />;
             })}
-            {filteredAnimals.length == 0 && <Text>Não há nenhum animal desta categoria :(</Text>}
+            {filteredAnimals.length == 0 && (
+              <Text>Não há nenhum animal desta categoria :(</Text>
+            )}
           </View>
         </View>
       </View>

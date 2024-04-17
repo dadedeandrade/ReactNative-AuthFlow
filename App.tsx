@@ -6,7 +6,7 @@ import Home from "./app/screens/Home";
 import Login from "./app/screens/Login";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Details from "./app/screens/Details";
-import { AnimalDetails } from "./app/services/useAnimals";
+import { AnimalDetails } from "./app/services/useSelectedAnimals";
 
 const queryClient = new QueryClient();
 
@@ -68,7 +68,7 @@ export const Layout = () => {
                 color={"black"}
               />
             ),
-            headerTitle: "Details",
+            headerTitle: "Detalhes",
           })}
         ></Stack.Screen>
       </Stack.Navigator>

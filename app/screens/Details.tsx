@@ -3,6 +3,7 @@ import React from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { AnimalDetails } from "../services/useAnimals";
+import useSelectedAnimals from "../services/useSelectedAnimals";
 
 type RootStackParamList = {
   Home: undefined;
@@ -14,6 +15,26 @@ type Props = NativeStackScreenProps<RootStackParamList, "Details", "MyStack">;
 
 const Details = ({ route }: Props) => {
   const { selectedAnimal } = route.params;
+
+  if (!selectedAnimal) {
+    return <Text>Carregando</Text>;
+  }
+
+  const {
+    selectedAnimalDetails,
+    isSelectedAnimalsError,
+    isSelectedAnimalsLoading,
+  } = useSelectedAnimals({
+    animalId: selectedAnimal.id,
+  });
+
+  if (
+    isSelectedAnimalsLoading ||
+    isSelectedAnimalsError ||
+    !selectedAnimalDetails
+  ) {
+    return <Text>Carregando</Text>;
+  }
 
   return (
     <>
@@ -27,19 +48,19 @@ const Details = ({ route }: Props) => {
                 borderRadius: 15,
               }}
               resizeMode="cover"
-              source={{ uri: selectedAnimal.img }}
+              source={{ uri: selectedAnimalDetails.img }}
             ></Image>
           </View>
           <View style={styles.detailsContainer}>
             <View style={styles.animalDetails}>
               <Text style={styles.animalDetails__name}>
-                {selectedAnimal.name}
+                {selectedAnimalDetails.name}
               </Text>
               <Text style={styles.animalDetails__age}>
-                {selectedAnimal.age} Anos
+                {selectedAnimalDetails.age} Anos
               </Text>
               <Text style={styles.animalDetails__description}>
-                {selectedAnimal.description}
+                {selectedAnimalDetails.description}
               </Text>
             </View>
             <View style={styles.getInTouch}>
@@ -50,13 +71,13 @@ const Details = ({ route }: Props) => {
               <View style={styles.getInTouch__email__container}>
                 <Ionicons name="mail" size={24} color="black" />
                 <Text style={styles.getInTouch__email__text}>
-                  {selectedAnimal.email}
+                  {selectedAnimalDetails.email}
                 </Text>
               </View>
               <View style={styles.getInTouch__phone__container}>
                 <Ionicons name="call" size={24} color="black" />
                 <Text style={styles.getInTouch__phone__text}>
-                  {selectedAnimal.phone}
+                  {selectedAnimalDetails.phone}
                 </Text>
               </View>
             </View>
@@ -109,7 +130,7 @@ const styles = StyleSheet.create({
   animalDetails__description: {},
   getInTouch: {
     width: "80%",
-    height: "100%",
+    paddingVertical: 20,
     justifyContent: "center",
     alignItems: "flex-start",
   },
