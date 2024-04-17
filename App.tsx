@@ -44,7 +44,9 @@ export const Layout = () => {
             name="Home"
             component={Home}
             options={{
-              headerLeft: () => <Button onPress={onLogout} title="Sair" />,
+              headerLeft: () => (
+                <Button color={"black"} onPress={onLogout} title="Sair" />
+              ),
               headerTitle: "",
             }}
           ></Stack.Screen>
@@ -63,6 +65,7 @@ export const Layout = () => {
               <Button
                 title="Voltar"
                 onPress={() => navigation.navigate("Home")}
+                color={"black"}
               />
             ),
             headerTitle: "Details",
