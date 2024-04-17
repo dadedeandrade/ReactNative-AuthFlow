@@ -96,7 +96,9 @@ const styles = StyleSheet.create({
     borderTopStartRadius: 15,
     paddingVertical: 20,
   },
-  animalDetails: {},
+  animalDetails: {
+    width: "80%",
+  },
   animalDetails__name: {
     fontSize: 18,
     fontWeight: "700",
