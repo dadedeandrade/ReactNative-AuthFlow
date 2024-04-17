@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet, ScrollView } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import useCategories from "../services/useCategories";
 
 import useAnimals from "../services/useAnimals";
@@ -9,21 +9,26 @@ import PickerSelect from "../components/PickerSelect";
 const Home = () => {
   const { categories, isCategoriesError, isCategoriesLoading } =
     useCategories();
-  const { animals, isAnimalsError, isAnimalsLoading } = useAnimals();
+  const { animals, isAnimalsError } = useAnimals();
+  const [selectedCategoryId, setSelectedCategoryId] = useState(null);
 
-  if (isCategoriesLoading) {
+  if (isCategoriesLoading || isAnimalsError) {
     <View>
-      <Text>Algo deu errado :( tente sair e entrar novamente no app</Text>
+      <Text>Carregando...</Text>
     </View>;
   }
 
-  if (isCategoriesError || isAnimalsError) {
+  if (isCategoriesError || isAnimalsError || !categories || !animals) {
     return (
       <View>
         <Text>Algo deu errado :( tente sair e entrar novamente no app</Text>
       </View>
     );
   }
+  const filteredAnimals =
+    selectedCategoryId === "null"
+      ? animals
+      : animals.filter((animal) => animal.categoryId === selectedCategoryId);
 
   return (
     <ScrollView>
@@ -37,9 +42,11 @@ const Home = () => {
             <PickerSelect
               placeholderText="Clique aqui para escolher uma categoria"
               items={categories.map((el) => {
-                return { label: el.name, value: el.name, key: el.id };
+                return { label: el.name, value: el.id, key: el.id };
               })}
-              onValueChange={(value) => console.log(value)}
+              onValueChange={(value) => {
+                setSelectedCategoryId(value);
+              }}
             />
           )}
         </View>
@@ -47,10 +54,9 @@ const Home = () => {
           <View style={styles.searchResults_content}>
             <Text style={styles.searchResults_text}>Resultados da busca:</Text>
 
-            {animals &&
-              animals.map((el) => {
-                return <Card key={el.id} animal={el} />;
-              })}
+            {filteredAnimals.map((el) => {
+              return <Card key={el.id} animal={el} />;
+            })}
           </View>
         </View>
       </View>
