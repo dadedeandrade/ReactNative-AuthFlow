@@ -57,6 +57,7 @@ const Home = () => {
             {filteredAnimals.map((el) => {
               return <Card key={el.id} animal={el} />;
             })}
+            {filteredAnimals.length == 0 && <Text>Não há nenhum animal desta categoria :(</Text>}
           </View>
         </View>
       </View>
