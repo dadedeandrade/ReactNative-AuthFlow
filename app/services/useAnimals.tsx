@@ -5,9 +5,14 @@ import { API_URL } from "../context/AuthContext";
 export interface Animal {
   age: number;
   categoryId: number;
-  id: number;
+  id: string;
   img: string;
   name: string;
+}
+export interface AnimalDetails extends Animal {
+  description?: string;
+  phone?: string;
+  email?: string;
 }
 
 const useAnimals = () => {

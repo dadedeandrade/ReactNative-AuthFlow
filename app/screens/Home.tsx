@@ -49,7 +49,7 @@ const Home = () => {
 
             {animals &&
               animals.map((el) => {
-                return <Card key={el.name} animal={el} />;
+                return <Card key={el.id} animal={el} />;
               })}
           </View>
         </View>

@@ -6,18 +6,20 @@ import {
   TouchableWithoutFeedback,
 } from "react-native";
 import React from "react";
-import { Animal } from "../services/useAnimals";
+import { AnimalDetails } from "../services/useAnimals";
 import { useNavigation } from "@react-navigation/native";
 
 interface CardProps {
-  animal: Animal;
+  animal: AnimalDetails;
 }
 
 const Card = ({ animal }: CardProps) => {
   const navigation = useNavigation();
-  
+
   return (
-    <TouchableWithoutFeedback onPress={() => navigation.navigate("Details")}>
+    <TouchableWithoutFeedback
+      onPress={() => navigation.navigate("Details", { selectedAnimal: animal })}
+    >
       <View style={styles.card}>
         <Image
           style={{

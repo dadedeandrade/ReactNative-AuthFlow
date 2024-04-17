@@ -8,7 +8,6 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import { useAuth } from "../context/AuthContext";
-import logo from "../../assets/ico.png";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -32,7 +31,10 @@ const Login = () => {
   return (
     <View style={styles.container}>
       <View style={styles.presentation_container}>
-        <Image style={styles.tinyLogo} source={logo} />
+        <Image
+          style={styles.tinyLogo}
+          source={require("../../assets/ico.png")}
+        />
         <Text style={styles.presentation_textBold}>LOGIN</Text>
         <Text style={styles.presentation_text}>
           Insira seus dados pra continuar

@@ -6,9 +6,22 @@ import Home from "./app/screens/Home";
 import Login from "./app/screens/Login";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Details from "./app/screens/Details";
+import { AnimalDetails } from "./app/services/useAnimals";
 
-const Stack = createNativeStackNavigator();
 const queryClient = new QueryClient();
+
+declare global {
+  namespace ReactNavigation {
+    interface RootParamList extends RootStackParamList {}
+  }
+}
+
+export type RootStackParamList = {
+  Home: undefined;
+  Login: undefined;
+  Details: { selectedAnimal: AnimalDetails };
+};
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function App() {
   return (

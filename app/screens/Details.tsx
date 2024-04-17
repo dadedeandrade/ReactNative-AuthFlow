@@ -1,20 +1,19 @@
 import { View, Text, ScrollView, StyleSheet, Image } from "react-native";
 import React from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { AnimalDetails } from "../services/useAnimals";
 
-const Details = () => {
-  //mock data
-  const selectedAnimal = {
-    id: "2",
-    categoryId: "3",
-    name: "Oriental",
-    age: 10,
-    img: "http://loremflickr.com/640/480/animals?lock=2",
-    description:
-      "Etiam eget nulla facilisis lectus fringilla imperdiet. Mauris ut cursus dolor.",
-    phone: "+55 92 7298-2520",
-    email: "kwilliams@yahoo.com",
-  };
+type RootStackParamList = {
+  Home: undefined;
+  Login: undefined;
+  Details: { selectedAnimal: AnimalDetails };
+};
+
+type Props = NativeStackScreenProps<RootStackParamList, "Details", "MyStack">;
+
+const Details = ({ route }: Props) => {
+  const { selectedAnimal } = route.params;
 
   return (
     <>
