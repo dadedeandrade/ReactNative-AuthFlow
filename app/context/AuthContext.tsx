@@ -36,7 +36,6 @@ export const AuthProvider = ({ children }: any) => {
   useEffect(() => {
     const loadToken = async () => {
       const token = await SecureStore.getItemAsync(TOKEN_KEY);
-      console.log("stored", token);
 
       if (token) {
         axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
@@ -61,8 +60,6 @@ export const AuthProvider = ({ children }: any) => {
         { headers: { "Content-Type": "application/json" } }
       );
 
-      console.log("resut", result.data);
-
       setAuthState({
         token: result.data.token,
         authenticated: true,
@@ -76,8 +73,6 @@ export const AuthProvider = ({ children }: any) => {
 
       return result;
     } catch (e) {
-      console.log("error", JSON.stringify(e));
-
       return { error: true, msg: (e as any).response.data.msg };
     }
   };
