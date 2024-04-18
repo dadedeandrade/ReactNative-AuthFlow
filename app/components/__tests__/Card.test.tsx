@@ -3,6 +3,7 @@ import { create, type ReactTestRendererJSON } from "react-test-renderer";
 import Card from "../Card";
 import { AnimalDetails } from "../../services/useSelectedAnimals";
 import renderer from "react-test-renderer";
+import { Text } from "react-native";
 
 const mockedNavigate = jest.fn();
 
@@ -16,7 +17,7 @@ jest.mock("@react-navigation/native", () => {
   };
 });
 
-describe("src/components/LinkButton", () => {
+describe("src/components/Card", () => {
   const fakeAnimal: AnimalDetails = {
     age: 1,
     categoryId: 1,
@@ -35,7 +36,8 @@ describe("src/components/LinkButton", () => {
     expect(Card.type).toBe("View");
     expect(Card.children[0].type).toBe("Image");
     expect(Card.children[1].type).toBe("View");
-    expect(Card.children[1].children[0]).toBe("Text");
-    expect(Card.children[1].children[1]).toBe("Text");
+    expect(Card.children[1].children[0].type).toBe("Text");
+
+    expect(Card.children[1].children[1].type).toBe("Text");
   });
 });
