@@ -6,8 +6,8 @@ import {
   TouchableWithoutFeedback,
 } from "react-native";
 import React from "react";
-import { AnimalDetails } from "../services/useAnimals";
 import { useNavigation } from "@react-navigation/native";
+import { AnimalDetails } from "app/services/useSelectedAnimals";
 
 interface CardProps {
   animal: AnimalDetails;

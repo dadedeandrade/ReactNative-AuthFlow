@@ -1,9 +1,17 @@
-import { View, Text, ScrollView, StyleSheet, Image } from "react-native";
+import {
+  View,
+  Text,
+  ScrollView,
+  StyleSheet,
+  Image,
+  ActivityIndicator,
+} from "react-native";
 import React from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { AnimalDetails } from "../services/useAnimals";
-import useSelectedAnimals from "../services/useSelectedAnimals";
+import useSelectedAnimals, {
+  AnimalDetails,
+} from "../services/useSelectedAnimals";
 
 type RootStackParamList = {
   Home: undefined;
@@ -17,7 +25,7 @@ const Details = ({ route }: Props) => {
   const { selectedAnimal } = route.params;
 
   if (!selectedAnimal) {
-    return <Text>Carregando</Text>;
+    return <ActivityIndicator size="large" color="#FBE8FF" />;
   }
 
   const {
@@ -33,7 +41,7 @@ const Details = ({ route }: Props) => {
     isSelectedAnimalsError ||
     !selectedAnimalDetails
   ) {
-    return <Text>Carregando</Text>;
+    return <ActivityIndicator size="large" color="purple" />;
   }
 
   return (

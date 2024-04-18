@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, ScrollView } from "react-native";
+import { View, Text, StyleSheet, ScrollView, ActivityIndicator } from "react-native";
 import React, { useState } from "react";
 import useCategories from "../services/useCategories";
 
@@ -16,7 +16,7 @@ const Home = () => {
   if (isCategoriesLoading || isAnimalsError || !animals) {
     return (
       <View>
-        <Text>Carregando...</Text>
+        <ActivityIndicator size="large" color="#FBE8FF" />
       </View>
     );
   }
