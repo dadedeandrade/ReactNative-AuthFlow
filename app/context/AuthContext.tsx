@@ -9,7 +9,9 @@ interface AuthProps {
 }
 
 const TOKEN_KEY = "my-jwt";
-export const API_URL = "https://tools.lab.ianclive.com/test-mobile-api";
+export const API_URL = process.env.EXPO_PUBLIC_API_URL;
+console.log("API_URL:", process.env.EXPO_PUBLIC_API_URL);
+console.log(`${API_URL}/auth/signin`);
 
 const AuthContext = createContext<AuthProps>({
   onLogin: function (email: string, password: string): Promise<any> {
@@ -17,7 +19,7 @@ const AuthContext = createContext<AuthProps>({
   },
   onLogout: function (): Promise<any> {
     throw new Error("Function not implemented.");
-  }
+  },
 });
 
 export const useAuth = () => {
