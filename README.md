@@ -1,7 +1,7 @@
 
 # ReactNative AuthFlow
 
-Aplicativo construído para vaga de estágio em PalmSoft
+Aplicativo para adoção de animais
 
 ## Recursos:
 
