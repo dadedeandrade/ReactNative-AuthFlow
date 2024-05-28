@@ -2,6 +2,12 @@
 # ReactNative AuthFlow
 
 Aplicativo para adoção de animais
+<details>
+<summary>Demonstração:</summary>
+
+  https://github.com/andradeviniicius/ReactNative-AuthFlow/assets/83192227/b0c1aca8-408e-485b-b498-de4785451151
+
+</details>
 
 ## Recursos:
 
